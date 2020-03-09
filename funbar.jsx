@@ -36,8 +36,6 @@ const DateContainer = styled(BarItem)`
   border-radius: 0 5px 5px 0;
 `;
 
-export const refreshFrequency = 10000; // ms
-
 export const command = "bash ./funbar/scripts/funbar.sh";
 
 export const render = ({ output }) => {
