@@ -9,7 +9,7 @@ const Bar = styled("div")`
   display: flex;
   justify-content: space-between;
   border-radius: 5px;
-  background: black;
+  background: #212121;
   margin: 5px auto;
   width: 60%;
 `;
