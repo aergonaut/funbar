@@ -14,12 +14,21 @@ const Bar = styled("div")`
   width: 60%;
 `;
 
-const BarItem = styled("div")`
+const BarSegment = styled("div")`
+  display: flex;
   flex: 0 1 auto;
   color: white;
-  padding: 2ch;
   font-size: 11px;
   font-family: "Fantasque Sans Mono";
+`;
+
+const BarItem = styled("div")`
+  padding: 2ch;
+`;
+
+const WifiContainer = styled(BarItem)`
+  background: #2e3436;
+  border-radius: 5px 0 0 5px;
 `;
 
 const DateContainer = styled(BarItem)`
@@ -32,12 +41,20 @@ export const refreshFrequency = 10000; // ms
 export const command = "bash ./funbar/scripts/funbar.sh";
 
 export const render = ({ output }) => {
-  let { hostname, time } = JSON.parse(output);
+  let { ssid, battery, time, spotify } = JSON.parse(output);
   return (
     <BarContainer>
       <Bar>
-        <BarItem>{hostname}</BarItem>
-        <DateContainer>{time}</DateContainer>
+        <BarSegment>
+          <WifiContainer>{ssid}</WifiContainer>
+        </BarSegment>
+        <BarSegment>
+          <BarItem>{`${spotify.track} - ${spotify.artist}`}</BarItem>
+        </BarSegment>
+        <BarSegment>
+          <BarItem>{`${battery.percentage}%`}</BarItem>
+          <DateContainer>{time}</DateContainer>
+        </BarSegment>
       </Bar>
     </BarContainer>
   );
