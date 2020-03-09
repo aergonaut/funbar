@@ -29,8 +29,7 @@ const DateContainer = styled(BarItem)`
 
 export const refreshFrequency = 10000; // ms
 
-export const command =
-  "/Users/chris/.rbenv/shims/ruby ./funbar/scripts/funbar.rb";
+export const command = "bash ./funbar/scripts/funbar.sh";
 
 export const render = ({ output }) => {
   let { hostname, time } = JSON.parse(output);
