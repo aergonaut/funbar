@@ -16,6 +16,8 @@
 funbar requires [shpotify](https://github.com/hnarayanan/shpotify) to provide
 Spotify track information.
 
+funbar uses [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans) as its font face.
+
 ## Installing
 
 1. Install [Übersicht][1].
