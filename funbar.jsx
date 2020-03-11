@@ -36,10 +36,39 @@ const DateContainer = styled(BarItem)`
   border-radius: 0 5px 5px 0;
 `;
 
-export const command = "bash ./funbar/scripts/funbar.sh";
+export const command = "./funbar/scripts/funbar.sh";
 
-export const render = ({ output }) => {
-  let { ssid, battery, time, spotify } = JSON.parse(output);
+export const refreshFrequency = 10000; // ms
+
+export const initialState = { data: null, error: null };
+
+export const updateState = (event, previousState) => {
+  if (event.error) {
+    return { data: null, error: event.error };
+  }
+
+  let data;
+  let error;
+  try {
+    data = JSON.parse(event.output);
+  } catch (e) {
+    error = e;
+  }
+  return { data, error };
+};
+
+export const render = ({ data, error }) => {
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  if (data == null) {
+    console.log("Funbar awaiting data");
+    return;
+  }
+
+  let { ssid, battery, time, spotify } = data;
   return (
     <BarContainer>
       <Bar>

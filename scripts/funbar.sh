@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+TERM=xterm
 HOSTNAME=$(hostname -s)
 TIME=$(date +"%a %-d %b %H:%M")
 WIFI_SSID=$(networksetup -getairportnetwork en0 | cut -c 24-)
