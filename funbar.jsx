@@ -36,6 +36,23 @@ const DateContainer = styled(BarItem)`
   border-radius: 0 5px 5px 0;
 `;
 
+function formatBatteryIndicator({ percentage, charging, remaining }) {
+  let suffix = "";
+  if (percentage != 100) {
+    if (remaining == "(no") {
+      suffix = " (calculating)";
+    } else {
+      suffix = ` (${remaining})`;
+    }
+  }
+
+  return `${percentage}%${suffix}`;
+}
+
+function formatSpotifyIndicator({ track, artist, album }) {
+  return `${track} - ${artist}`;
+}
+
 export const command = "./funbar/scripts/funbar.sh";
 
 export const refreshFrequency = 10000; // ms
@@ -76,10 +93,10 @@ export const render = ({ data, error }) => {
           <WifiContainer>{ssid}</WifiContainer>
         </BarSegment>
         <BarSegment>
-          <BarItem>{`${spotify.track} - ${spotify.artist}`}</BarItem>
+          <BarItem>{formatSpotifyIndicator(spotify)}</BarItem>
         </BarSegment>
         <BarSegment>
-          <BarItem>{`${battery.percentage}%`}</BarItem>
+          <BarItem>{formatBatteryIndicator(battery)}</BarItem>
           <DateContainer>{time}</DateContainer>
         </BarSegment>
       </Bar>
